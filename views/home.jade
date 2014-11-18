@@ -1,0 +1,46 @@
+extends meta
+
+block content
+  header
+    figure
+      img(src='/img/boda-jammy-paco.png', alt='la boda de Jammy y Paco')
+    h1 Jammy & Paco
+    h4 11-10-2014
+  section.date
+    h2 Lo que paso en la fiesta segun #{name+num}
+    include pictures.jade
+  section.mesa_de_regalos
+    h2 Muchas gracias por acompañarnos
+    .cometnarios
+      div#disqus_thread
+      script( src="/javascripts/disqus.js")
+      noscript
+        | Please enable JavaScript to view the
+        a(href='http://disqus.com/?ref_noscript') comments powered by Disqus.
+        a.dsq-brlink(href='http://disqus.com')
+          | comments powered by
+          span.logo-disqus Disqus
+    .cometnarios
+      script(type="text/javascript")
+        | google_ad_client = "ca-pub-8859413948767911";
+        | google_ad_slot = "5490984129";
+        | google_ad_width = 728;
+        | google_ad_height = 90;
+      script(type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js")
+
+  section.contacto.icon-triangulo-bottom
+    h2 Si tienes alguna duda contáctanos aquí
+    article.phones.icon-whatsapp
+      div
+        h4.name Jammy
+        p.tel 622 145 3016
+      div
+        h4.name Paco
+        p.tel 669 159 8618
+    article.social-media
+      a(href='https://facebook.com/bodajammyypaco')
+        i.icon-facebook
+      a(href='https://twitter.com/pacochavez')
+        i.icon-twitter
+      a(href='https://plus.google.com/113083473087716794501/', rel='publisher')
+        i.icon-google

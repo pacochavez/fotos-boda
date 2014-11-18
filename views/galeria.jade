@@ -1,0 +1,15 @@
+each value in name
+	div 
+		-var n =0
+		each x in value
+			-n++          
+			case n
+				when 1
+					-var id = x
+				when 2
+					-var album = x
+				when 3
+					-var imagen = x
+				when 4
+					a(href='/ver/#{galeria}/')
+						img(src='/thumbnail/#{imagen}')
