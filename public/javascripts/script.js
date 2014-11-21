@@ -1,32 +1,27 @@
 var archivos=[];
 var id_usuario
-$('.mensajes').on('click', function(evt) {
-    $('.mensajes').addClass('ocultar')
+$('.alert').on('click', function(evt) {
+    $('.alert').addClass('ocultar')
     if ($(this).hasClass('ok')) {
         $('.inputs').removeClass('ocultar');
         $('.progress').removeClass("visible");
         document.getElementById('myFile').value ="";
         document.getElementById('myName').value="";
-        $('.mensajes')
+        $('.alert')
         .removeClass()
         .addClass("btn-pic mensajes ocultar");
     }
 });
-$(".login").click(function(){
-  check();
-})
 
-$('.upload').on('click', function(evt) {
-    alert('entro')
+$('.select_files.upload').on('click', function(evt) {
     var formData = new FormData();
     var file_ = document.getElementById('myFile');
     var name_ = document.getElementById('myName').value;
     var files_ = file_.files;
     var fl=files_.length;
-
     if(fl!=0 && name_!= ""){    
         $('.inputs').addClass('ocultar')
-        $('.mensajes')
+        $('.alert')
         .removeClass()
         .addClass("btn-pic mensajes ocultar");
         $('.progress').addClass("visible");
@@ -49,50 +44,36 @@ $('.upload').on('click', function(evt) {
     };
 
     xhr.onerror = function(e) {
-        $('.mensajes').removeClass("ocultar");
-        $('.mensajes').addClass("error")
-        $('.mensajes').html('An error occurred while submitting the form. Maybe your file is too big');
+        $('.alert').html('An error occurred while submitting the form. Maybe your file is too big');
         // alert('An error occurred while submitting the form. Maybe your file is too big');
     };
 
     xhr.onload = function() {
-        $('.mensajes').removeClass("ocultar");
-        $('div.bar').addClass('stop');
-        $('.mensajes').addClass("ok")
-        $('.mensajes').html("Gracias por comartir tus fotos");
+        $('.alert').html("Gracias por comartir tus fotos");
     };
     
     xhr.send(formData);
     }else{
 
-    $('.mensajes').removeClass("ocultar");
+    $('.alert').removeClass("ocultar");
         if(name_== ""){ 
-            $('.mensajes').addClass("miss")
+            $('.alert').addClass("miss")
             document.getElementById('myName').focus();
-            $('.mensajes').html("Escribe tu nombre por favor");
+            $('.alert').html("Escribe tu nombre por favor");
         }else{ 
-            $('.mensajes').addClass("miss")
-            $('.mensajes').html("Agrega una imagen por favor");
+            $('.alert').addClass("miss")
+            $('.alert').html("Agrega una imagen por favor");
         }
     }
 });
 var socket = io();
 socket.on('message',function(msg){
-//nombre,'upFoto':upFoto,'type':type
-$('#messages').append(
-$('<li>').html(
-'<a href="/fotos-boda/'+msg.upFoto+'"><img src="/thumbnail/'+msg.upFoto+'"></a>'
-)
-);
+    $('#messages').append(
+        $('<li>').html(
+            '<a href="/fotos-boda/'+msg.upFoto+'"><img src="/thumbnail/'+msg.upFoto+'"></a>'
+        )
+    );
 });
-var check = function(){
- if(typeof FB === 'undefined'){
-   // your code here.
-         setTimeout(function(){check();}, 1000);
-    }else{
-        checkLoginState();
-    }
-}
 
 
 

@@ -2,15 +2,20 @@ var app = require('express')()
 	, http = require('http').Server(app)
 	,io = require('socket.io')(http)
 	,express = require('express')
-  	, path = require('path')
-  	, easyimg = require('easyimage')
-  	, sqlite3 = require('sqlite3').verbose()
-  	, db = new sqlite3.Database('./database/database.db');
+	, path = require('path')
+	, easyimg = require('easyimage')
+	, sqlite3 = require('sqlite3').verbose()
+	, db = new sqlite3.Database('./database/database.db')
+  ,bodyParser = require('body-parser') // for reading POSTed form data into `req.body`
+  ,expressSession = require('express-session')
+  ,cookieParser = require('cookie-parser');
   
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(cookieParser());
+  app.use(expressSession({secret:'somesecrettokenhere'}));
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser({  
@@ -28,10 +33,13 @@ app.configure('development', function(){
 
 
 app.get('/', function(req, res){
-  var consulta ="SELECT rowid AS id,album,imagen,type FROM fotos";
+if (req.session.userName) {
+    var username
+  }
+  var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos";
   db.serialize(function() {
     db.all(consulta, function(err, row) {
-            res.render('home2', {'name': row});
+            res.render('home2', {'name': row,usuario:username});
       console.log(row)
     });
    });
@@ -41,17 +49,14 @@ app.post('/', function(req, res) {
   var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
       var nombre = req.body.myName;
   if(req.files.myFile.path!=null){
-   // console.log("una foto"+req.files.myFile.path)
       var elpath = req.files.myFile.path,
           upFoto = elpath.split("/");
           upFoto = upFoto[upFoto.length-1];
       var type = upFoto.split(".");
           type = type[type.length-1];
-         // console.log(upFoto,nombre);
           stmt.run(nombre,upFoto,type);
           crop(elpath,upFoto,nombre,type);
   }else{
-  //  console.log("mas foto")
          var ft=req.files.myFile.length
          var i=0;
      while ( i < ft) {
@@ -60,14 +65,12 @@ app.post('/', function(req, res) {
           upFoto = upFoto[upFoto.length-1];
       var type = upFoto.split(".");
           type = type[type.length-1];
-          //console.log(upFoto,nombre);   
           stmt.run(nombre,upFoto,type);
           crop(elpath,upFoto,nombre,type);
       i++;
    } 
   }
   stmt.finalize();
-  //db.close();
   });
   res.end();
 });

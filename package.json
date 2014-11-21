@@ -1,7 +1,7 @@
 {
-  "name": "express-upload-progress",
+  "name": "Boda-jammy-paco",
   "version": "0.0.1",
-  "description": "example to show file uploading with express.js and progress bar",
+  "description": "upload and crop and save user and images and creat sesion",
   "scripts": {
     "start": "node app"
   },
@@ -10,12 +10,15 @@
     "express": "~3.1.0",
     "jade": "*",
     "socket.io": "^1.2.0",
-    "sqlite3": "^3.0.2"
+    "sqlite3": "^3.0.2",
+    "body-parser": "~1.0.1",
+    "cookie-parser": "~1.0.1",
+    "express-session": "~1.0.2"
   },
   "author": {
-    "name": "Mirco Zeiss",
-    "email": "mirco.zeiss@gmail.com",
-    "twitter": "zeMirco"
+    "name": "Paco Chavez",
+    "email": "fco.chavezg@gmail.com",
+    "twitter": "pacochavez"
   },
   "engines": {
     "node": "0.8.x",

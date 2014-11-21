@@ -9,14 +9,7 @@ block content
         h1 Jammy & Paco
       nav
         form(method='post', action='/',id='myForm')
-          ul
-            li.menu.btn-pic
-              a(href='/') fotos
-            li.menu.btn-pic
-              a(href='/albunes/') Álbunes
-            li.menu.btn-pic.login(onCLick="FB.login()") Compartir fotos
-              //- fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')
-            include pictures.jade
+          include pictures.jade
   section.fotos
       #messages
         include galeria.jade

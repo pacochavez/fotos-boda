@@ -1,13 +1,14 @@
  // This is called with the results from from FB.getLoginStatus().
   var status;
+  var usuario;
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
+    status = response.status;
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    status=response.status;
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
      testAPI();
@@ -28,6 +29,7 @@
   function checkLoginState(){
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+
     });
   }
   window.fbAsyncInit = function() {
@@ -38,7 +40,7 @@
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
   });
-  // Now that we've initialized the JavaScript SDK, we call 
+   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
   // the callback you provide.  They can be:
@@ -51,23 +53,54 @@
   // These three cases are handled in the callback function.
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
+
     });
+ 
   };
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1504301486491959";
+    js.src = "//connect.facebook.net/en_US/all.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
+
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     //console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log(response);
-      document.getElementById('myName').value = response.first_name;
-     id_usuario = response.id;
-     });
+     // $(".login").html("Hola "+response.name );
+      sesion (response.name)
+
+    
+       usuario = response;
+    });
   }
+   
+   function sesion (response){
+    
+    var formData = new FormData();
+    formData.append('userName', response);
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/', true);
+    xhr.upload.onprogress = function(e) {
+        if (e.lengthComputable) {
+            var percentage = (e.loaded / e.total) * 100;
+        }
+    };
+
+    xhr.onerror = function(e) {
+        // alert('An error occurred while submitting the form. Maybe your file is too big');
+    };
+
+    xhr.onload = function() {
+      $(".login").html("Hola "+response.name );
+    };
+    
+    xhr.send(formData);
+
+
+   }

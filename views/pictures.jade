@@ -1,7 +1,14 @@
-li.progress.btn-pic
-	div.bar(style='width: 0%')
-li.alert.btn-pic mensaje
-li.select_files
-	input.btn-pic(type='text', name='myName', id='myName')
-	input.btn-pic(type='file', name='myFile', id='myFile',multiple)
-li.select_files.upload subir fotos
+ul
+	li.menu.btn-pic.active
+		a(href='/') fotos
+	li.menu.btn-pic.active
+		a(href='/albunes/') Álbunes
+	li.progress.btn-pic
+		div.bar(style='width: 0%')
+	li.alert.btn-pic mensaje
+	li.select_files.btn-pic
+		input(type='hidden', name='myName', id='myName')
+		input(type='file', name='myFile', id='myFile',multiple)
+	li.select_files.upload.btn-pic subir fotos
+	li.menu.btn-pic.login.upload.active
+		.fb-login-button(data-max-rows='1', data-size='large', data-show-faces='false',data-auto-logout-link='flase', onlogin='checkLoginState();')
