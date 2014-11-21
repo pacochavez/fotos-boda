@@ -46,6 +46,22 @@ if (req.session.user_Id) {
     });
    });
 });
+
+
+app.get('/albunes/', function(req, res) {
+  var id_usuario = req.session.user_Id;
+    var username = req.session.user_Name;
+  var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos group by id_usuario";
+  db.serialize(function() {
+    db.all(consulta, function(err, row) {
+            res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'album':'album'});
+      console.log(row)
+    });
+});
+});
+
+
+
 app.post('/', function(req, res) {
 
   if(req.body.userName){
@@ -70,7 +86,7 @@ app.post('/', function(req, res) {
   }else{
     db.serialize(function() {
       var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
-          var nombre = req.body.myName;
+          var nombre = req.session.user_Id;
       if(req.files.myFile.path!=null){
           var elpath = req.files.myFile.path,
               upFoto = elpath.split("/");

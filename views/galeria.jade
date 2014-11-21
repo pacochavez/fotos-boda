@@ -1,8 +1,8 @@
 each value in name
-	div 
+	div
 		-var n =0
 		each x in value
-			-n++          
+			-n++
 			case n
 				when 1
 					-var id = x
@@ -12,5 +12,6 @@ each value in name
 					-var imagen = x
 				when 4
 					-var tipo = x
+
 					a(href='/fotos-boda/#{imagen}')
 						img(src='/thumbnail/#{imagen}')
