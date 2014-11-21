@@ -51,7 +51,7 @@ if (req.session.user_Id) {
 app.get('/albunes/', function(req, res) {
   var id_usuario = req.session.user_Id;
     var username = req.session.user_Name;
-  var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos group by id_usuario";
+  var consulta ="SELECT users.rowid AS id,users.id_usuario AS id_U,imagen,type,name FROM fotos CROSS JOIN users group by id_U";
   db.serialize(function() {
     db.all(consulta, function(err, row) {
             res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'album':'album'});
