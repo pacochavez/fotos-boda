@@ -1,0 +1,19 @@
+ul
+	li.menu.btn-pic.active
+		a(href='/') fotos
+	li.menu.btn-pic.active
+		a(href='/albunes/') Álbunes
+	li.progress.btn-pic
+		div.bar(style='width: 0%')
+	li.alert.btn-pic mensaje
+	if  usuario
+		li.select_files.btn-pic.active
+			//- input(type='hidden', name='myName', id='myName' value ="#{usuario}")
+			//- input(type='hidden', name='myId', id='myId' value ="#{id_usuario}")
+			input(type='file', name='myFile', id='myFile',multiple)
+			
+		li.select_files.upload.btn-pic.active subir fotos
+		li.menu.btn-pic.active #{usuario}
+	else				
+		li.menu.btn-pic.login.upload.active
+			.fb-login-button(data-max-rows='1', data-size='large', data-show-faces='false',data-auto-logout-link='flase', onlogin='checkLoginState();')
