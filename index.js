@@ -3,7 +3,7 @@ var app = require('express')()
 	,io = require('socket.io')(http)
 	,express = require('express')
 	, path = require('path')
-	, easyimg = require('easyimage')
+	, im = require('imagemagick')
 	, sqlite3 = require('sqlite3').verbose()
 	, db = new sqlite3.Database('./database/database.db')
   ,bodyParser = require('body-parser') // for reading POSTed form data into `req.body`
@@ -115,20 +115,31 @@ app.post('/', function(req, res) {
   res.end();
 });
 var crop = function(elpath,upFoto,nombre,type){
-  easyimg.rescrop({
-         src:elpath, dst:__dirname + '/public/thumbnail/'+upFoto,
-         width:500, height:500,
-         cropwidth:250, cropheight:250,
-         x:0, y:0
-      }).then(
-      function(image) {
-         console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
-         io.emit('message', {'nombre':nombre,'upFoto':upFoto,'type':type});
-      },
-      function (err) {
-        console.log(err);
-      }
-    );
+  // easyimg.rescrop({
+  //        src:elpath, dst:__dirname + '/public/thumbnail/'+upFoto,
+  //        width:500, height:500,
+  //        cropwidth:250, cropheight:250,
+  //        x:0, y:0
+  //     }).then(
+  //     function(image) {
+  //        console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+  //        io.emit('message', {'nombre':nombre,'upFoto':upFoto,'type':type});
+  //     },
+  //     function (err) {
+  //       console.log(err);
+  //     }
+  //   );
+im.crop({
+  srcPath:elpath,
+  dstPath: __dirname + '/public/thumbnail/'+upFoto,
+  width: 250,
+  height: 250,
+  quality: 1,
+  gravity: "North"
+}, function(err, stdout, stderr){
+  console.log(err+" : "+ stdout+" : "+stderr)
+    io.emit('message', {'nombre':nombre,'upFoto':upFoto,'type':type});
+});
   }
 
 
