@@ -11,5 +11,6 @@ each value in name
 				when 3
 					-var imagen = x
 				when 4
-					a(href='/ver/#{galeria}/')
-						img(src='/thumbnail/#{name}')
+					-var tipo = x
+					a(href='/fotos-boda/#{imagen}')
+						img(src='/thumbnail/#{imagen}')

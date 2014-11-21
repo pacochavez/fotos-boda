@@ -1,6 +1,5 @@
  // This is called with the results from from FB.getLoginStatus().
-  var status;
-  var usuario;
+
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -73,17 +72,18 @@
     FB.api('/me', function(response) {
       console.log(response);
      // $(".login").html("Hola "+response.name );
-      sesion (response.name)
-
-    
-       usuario = response;
+      sesion(response)
     });
   }
    
    function sesion (response){
-    
+    console.log(response.id)
     var formData = new FormData();
-    formData.append('userName', response);
+
+    formData.append('userName',response.id);
+    formData.append('userName',response.name);
+    formData.append('userName',response.last_name);
+    formData.append('userName',response.first_name);
     var xhr = new XMLHttpRequest();
     xhr.open('post', '/', true);
     xhr.upload.onprogress = function(e) {

@@ -14,32 +14,26 @@ $('.alert').on('click', function(evt) {
 });
 
 $('.select_files.upload').on('click', function(evt) {
+    alert("entro")
     var formData = new FormData();
     var file_ = document.getElementById('myFile');
     var name_ = document.getElementById('myName').value;
     var files_ = file_.files;
     var fl=files_.length;
     if(fl!=0 && name_!= ""){    
-        $('.inputs').addClass('ocultar')
-        $('.alert')
-        .removeClass()
-        .addClass("btn-pic mensajes ocultar");
-        $('.progress').addClass("visible");
         var i=0;
         while ( i < fl) {
             archivos = files_[i];
             i++;
         formData.append('myFile', archivos);
-    }
-
-    formData.append('myName', name_);
+        }
     formData.append('myName', name_);
     var xhr = new XMLHttpRequest();
     xhr.open('post', '/', true);
     xhr.upload.onprogress = function(e) {
         if (e.lengthComputable) {
             var percentage = (e.loaded / e.total) * 100;
-            $('div.progress div.bar').css('width', percentage + '%');
+            $('.progress div.bar').css('width', percentage + '%');
         }
     };
 
@@ -69,7 +63,7 @@ $('.select_files.upload').on('click', function(evt) {
 var socket = io();
 socket.on('message',function(msg){
     $('#messages').append(
-        $('<li>').html(
+        $('<div>').html(
             '<a href="/fotos-boda/'+msg.upFoto+'"><img src="/thumbnail/'+msg.upFoto+'"></a>'
         )
     );

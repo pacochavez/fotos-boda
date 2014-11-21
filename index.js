@@ -33,45 +33,69 @@ app.configure('development', function(){
 
 
 app.get('/', function(req, res){
-if (req.session.userName) {
-    var username
+if (req.session.user_Id) {
+    var id_usuario = req.session.user_Id;
+    var username = req.session.user_Name;
+    console.log(username); 
   }
   var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos";
   db.serialize(function() {
     db.all(consulta, function(err, row) {
-            res.render('home2', {'name': row,usuario:username});
+            res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario});
       console.log(row)
     });
    });
 });
 app.post('/', function(req, res) {
-  db.serialize(function() {
-  var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
-      var nombre = req.body.myName;
-  if(req.files.myFile.path!=null){
-      var elpath = req.files.myFile.path,
-          upFoto = elpath.split("/");
-          upFoto = upFoto[upFoto.length-1];
-      var type = upFoto.split(".");
-          type = type[type.length-1];
-          stmt.run(nombre,upFoto,type);
-          crop(elpath,upFoto,nombre,type);
+
+  if(req.body.userName){
+    var user ={
+       _Id : req.body.userName[0]
+      ,_Name : req.body.userName[1]
+      ,_LastName : req.body.userName[2]
+      ,_FirstName : req.body.userName[3]      
+    }
+    req.session.user_Id =user._Id;
+    req.session.user_Name =user._Name;
+    var consulta ="SELECT id_usuario,name FROM users where id_usuario='"+user._Id+"'";
+    db.serialize(function() {
+      db.all(consulta, function(err, row) {
+        console.log(row.length)
+        var stmt = db.prepare("INSERT INTO users VALUES (?,?,?,?)");
+          if(row.length==0){
+        stmt.run(user._Id,user._Name,user._LastName,user._FirstName);
+        }
+      });
+  })
   }else{
-         var ft=req.files.myFile.length
-         var i=0;
-     while ( i < ft) {
-      var elpath = req.files.myFile[i].path,
-          upFoto = elpath.split("/");
-          upFoto = upFoto[upFoto.length-1];
-      var type = upFoto.split(".");
-          type = type[type.length-1];
-          stmt.run(nombre,upFoto,type);
-          crop(elpath,upFoto,nombre,type);
-      i++;
-   } 
+    db.serialize(function() {
+      var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
+          var nombre = req.body.myName;
+      if(req.files.myFile.path!=null){
+          var elpath = req.files.myFile.path,
+              upFoto = elpath.split("/");
+              upFoto = upFoto[upFoto.length-1];
+          var type = upFoto.split(".");
+              type = type[type.length-1];
+              stmt.run(nombre,upFoto,type);
+              crop(elpath,upFoto,nombre,type);
+      }else{
+             var ft=req.files.myFile.length
+             var i=0;
+        while ( i < ft) {
+          var elpath = req.files.myFile[i].path,
+              upFoto = elpath.split("/");
+              upFoto = upFoto[upFoto.length-1];
+          var type = upFoto.split(".");
+              type = type[type.length-1];
+              stmt.run(nombre,upFoto,type);
+              crop(elpath,upFoto,nombre,type);
+              i++;
+        } 
+      }
+      stmt.finalize();
+    });
   }
-  stmt.finalize();
-  });
   res.end();
 });
 var crop = function(elpath,upFoto,nombre,type){
