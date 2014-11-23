@@ -1,4 +1,4 @@
-var upload_image = [];
+
 var app = require('express')()
   , http = require('http').Server(app)
   ,io = require('socket.io')(http)
@@ -86,6 +86,7 @@ app.post('/', function(req, res) {
   })
   }else{
     db.serialize(function() {
+      var upload_image = [];
       var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
           var nombre = req.session.user_Id;
       if(req.files.myFile.path!=null){

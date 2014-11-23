@@ -2,15 +2,6 @@ var archivos=[];
 var id_usuario
 $('.alert').on('click', function(evt) {
 
-    if ($(this).hasClass('ok')) {
-        $('.inputs').removeClass('ocultar');
-        $('.progress').removeClass("visible");
-       
-        document.getElementById('myName').value="";
-        $('.alert')
-        .removeClass()
-        .addClass("btn-pic mensajes ocultar");
-    }
 });
 
 $('.select_files.upload').on('click', function(evt) {
@@ -44,7 +35,6 @@ $('.select_files.upload').on('click', function(evt) {
     };
 
     xhr.onload = function() {
-        $('.alert').addClass("active").html("Gracias por comartir tus fotos");
         $('.alert').addClass("active").html("Gracias por comartir tus fotos");
         socket.emit('message', "1");
     };
