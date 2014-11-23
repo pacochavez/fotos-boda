@@ -11,13 +11,13 @@ var app = require('express')()
   ,cookieParser = require('cookie-parser');
   
 app.configure(function(){
-  app.set('port', process.env.PORT || 8080);
+ // app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(cookieParser());
   app.use(expressSession({secret:'321941239¿412¿342'}));
   app.use(express.favicon());
-  app.use(express.logger('dev'));
+ // app.use(express.logger('dev'));
   app.use(express.bodyParser({  
     keepExtensions: true, 
     uploadDir: __dirname + '/public/fotos-boda',
@@ -143,6 +143,6 @@ im.crop({
   }
 
 
- http.listen(8080, function(){
+ http.listen(3000, function(){
   console.log('listening on */chat');
  });
