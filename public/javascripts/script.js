@@ -1,11 +1,11 @@
 var archivos=[];
 var id_usuario
 $('.alert').on('click', function(evt) {
-    $('.alert').addClass('ocultar')
+
     if ($(this).hasClass('ok')) {
         $('.inputs').removeClass('ocultar');
         $('.progress').removeClass("visible");
-        document.getElementById('myFile').value ="";
+       
         document.getElementById('myName').value="";
         $('.alert')
         .removeClass()
@@ -45,20 +45,26 @@ $('.select_files.upload').on('click', function(evt) {
 
     xhr.onload = function() {
         $('.alert').addClass("active").html("Gracias por comartir tus fotos");
+        $('.alert').addClass("active").html("Gracias por comartir tus fotos");
+        socket.emit('message', "1");
     };
     
     xhr.send(formData);
     }
 });
+
+var parentElement = document.getElementById('messages');
 var socket = io();
 socket.on('message',function(msg){
-    $('#messages').append(
-        $('<div>').html(
-            '<a href="/fotos-boda/'+msg.upFoto+'"><img src="/thumbnail/'+msg.upFoto+'"></a>'
-        )
-    );
+    for (var i in msg) {
+       //alert( msg[i])
+        var theFirstChild = parentElement.firstChild;
+        var newElement = document.createElement("div");
+            newElement.innerHTML ='<a href="/fotos-boda/'+msg[i]+'"><img src="/fotos-boda/'+msg[i]+'"></a>';
+        parentElement.insertBefore(newElement, theFirstChild);
+        document.getElementById('myFile').value ="";
+    }
 });
-
 
 
 
