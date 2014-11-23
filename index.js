@@ -65,6 +65,7 @@ app.get('/albunes/', function(req, res) {
 
 app.post('/', function(req, res) {
 
+    var upload_image = [];
   if(req.body.userName){
     var user ={
        _Id : req.body.userName[0]
@@ -85,7 +86,6 @@ app.post('/', function(req, res) {
       });
   })
   }else{
-    var upload_image = [];
     db.serialize(function() {
       var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
           var nombre = req.session.user_Id;
