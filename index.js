@@ -86,7 +86,7 @@ app.post('/', function(req, res) {
               type = type[type.length-1];
               stmt.run(req.session.user_Id,upFoto,type);
               Users[req.session.user_Name]['fotos'][0] = upFoto;
-              
+              console.log(upFoto+" unafoto");
       }else{
              var ft=req.files.myFile.length
              var i=0;
@@ -98,6 +98,7 @@ app.post('/', function(req, res) {
               type = type[type.length-1];
               stmt.run(req.session.user_Id,upFoto,type);
               Users[req.session.user_Name]['fotos'][i] = upFoto;
+              console.log(upFoto+" muchas");
               i++;
         } 
       }
@@ -109,13 +110,9 @@ app.post('/', function(req, res) {
 
 io.on('connection', function(socket){
   socket.on('message', function(msg){
-
-  console.log(msg)
-  //io.emit('message',Users[msg]['fotos'])
   for (var i in Users[msg]['fotos']){
     crop(Users[msg]['fotos'][i])
   }
-  Users[msg]['fotos'] ={};
   });
 });
 
