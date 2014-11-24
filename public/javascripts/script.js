@@ -35,8 +35,8 @@ socket.on('message',function(msg){
 
 var formData ={}
 var sendFIles = function(n){
-            M++; 
-            formData[n] = new FormData();
+    if (M<fl){
+              formData[n] = new FormData();
             
             formData[n].append('myFile', files_[n]);
            
@@ -58,17 +58,21 @@ var sendFIles = function(n){
 
             xhr[n].onload = function() {
                 
+                M++; 
                 $('.alert').addClass("active").html("Gracias por comartir tus fotos");
                 $('.user').html("Gracias por comartir tus fotos");
                 $('.progress .bar').addClass("stop")
                 socket.emit('message', id_usuario);
-                
-               sendFIles(M);    
+            
+               sendFIles(M); 
+
                
 
             };
             
             xhr[n].send(formData[n]);
+    }
+            
            
 
 
