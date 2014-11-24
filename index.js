@@ -3,7 +3,7 @@ var app = require('express')()
   ,io = require('socket.io')(http)
   ,express = require('express')
   , path = require('path')
-  , im = require('imagemagick')
+  , easyimg = require('easyimage')
   , sqlite3 = require('sqlite3').verbose()
   , db = new sqlite3.Database('./database/database.db')
   ,bodyParser = require('body-parser') // for reading POSTed form data into `req.body`
@@ -22,7 +22,7 @@ app.configure(function(){
   app.use(express.bodyParser({  
     keepExtensions: true, 
     uploadDir: __dirname + '/public/fotos-boda',
-  //  limit: '1000mb'
+   limit: '1000mb'
   }));
   app.use(express.methodOverride());
   app.use(app.router);
@@ -111,7 +111,10 @@ io.on('connection', function(socket){
   socket.on('message', function(msg){
 
   console.log(msg)
-  io.emit('message',Users[msg]['fotos'])
+  //io.emit('message',Users[msg]['fotos'])
+  for (var i in Users[msg]['fotos']){
+    crop(Users[msg]['fotos'][i])
+  }
   Users[msg]['fotos'] ={};
   });
 });
@@ -119,5 +122,18 @@ io.on('connection', function(socket){
  http.listen(3000, function(){  
   console.log('listening on */:3000');
  });
+var crop = function(upFoto){
+  easyimg.rescrop({
+    src:__dirname + '/public/fotos-boda/'+upFoto, dst:__dirname + '/public/thumbnail/'+upFoto,
+    width:500, height:500,
+    cropwidth:250, cropheight:250,
+    x:0, y:0
+  }).then(function(image) {
+    console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+    io.emit('message', upFoto);
+  },
+  function (err) {
+  console.log(err);
+  });
 
-
+}
