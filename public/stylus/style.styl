@@ -27,6 +27,7 @@ body
 				display inline-block
 				float right
 				ul
+					margin 0px;
 					text-align center
 					li 
 						display none
@@ -44,7 +45,20 @@ body
 							&:hover
 								background #0878ac
 							&.progress
-									width 200px
+								width 200px
+								.bar
+									height: 20px;
+									background-color: #6188f5;
+									border-radius: 20px;
+									background-repeat: repeat-x;
+									background-position: 0 0;
+									background-size: 40px 22px;
+									background-image: -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image: -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image: -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image: linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									-webkit-animation: play 0.8s linear 0 infinite;
+									&.stop{animation: stop 0.8s linear 0 none;}
 							&.upload
 								background #00a203
 							&.login
@@ -66,19 +80,7 @@ body
 							color #fff
 							text-decoration none
 							display block
-						.bar
-							height: 20px;
-							background-color: #6188f5;
-							border-radius: 20px;
-							background-repeat: repeat-x;
-							background-position: 0 0;
-							background-size: 40px 22px;
-							background-image: -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-							background-image: -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-							background-image: -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-							background-image: linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-							-webkit-animation: play 0.8s linear 0 infinite;
-							&.stop{-webkit-animation: stop 0.8s linear 0 none;}					
+											
 								
 	section.fotos
 		div#messages
@@ -86,19 +88,26 @@ body
 			div
 				display inline-block
 				margin 10px
-				width 250px
+				width 245px
+				height 245px
 				margin 10px
+				position relative
+				overflow hidden
+				border-radius 20px
+				border 5px solid #fff
+				&:hover
+					border 5px solid #0878ac
+				a
+					position absolute
+					left -25%
+					top -25%
 				img
-					width 245px 
-					border-radius 20px
-					border 5px solid #fff
-					&:hover
-						border 5px solid #0878ac
+					width 500px 
 @keyframes play {
 	from {
-		background-position -100px
+		background-position 150px
 	}
 	to {
-   		background-position -100px
-  	}
+		background-position -100px
+	}
 }

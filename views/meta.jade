@@ -17,10 +17,11 @@ html(lang='es', xmlns:fb='http://ogp.me/ns/fb#')
     script( src="/javascripts/analytics.js")
     script(src='/javascripts/login.js')
 
-  body
+  body 
     include fb.jade
     block content
     script(src='/javascripts/jquery-1.9.1.min.js')
     //- script(src='/javascripts/bootstrap.min.js')
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/script.js')
+    script var id_usuario  = "#{usuario}";

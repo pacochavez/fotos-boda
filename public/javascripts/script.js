@@ -1,5 +1,5 @@
 var archivos=[];
-var id_usuario
+
 $('.alert').on('click', function(evt) {
 
 });
@@ -25,7 +25,7 @@ $('.select_files.upload').on('click', function(evt) {
         if (e.lengthComputable) {
             var percentage = (e.loaded / e.total) * 100;
             $('.progress').addClass("active");
-            $('.progress div.bar').css('width', percentage + '%');
+            $('.progress .bar').css('width', percentage + '%');
         }
     };
 
@@ -36,7 +36,9 @@ $('.select_files.upload').on('click', function(evt) {
 
     xhr.onload = function() {
         $('.alert').addClass("active").html("Gracias por comartir tus fotos");
-        socket.emit('message', "1");
+        $('.user').html("Gracias por comartir tus fotos");
+        $('.progress .bar').addClass("stop")
+        socket.emit('message', id_usuario);
     };
     
     xhr.send(formData);
@@ -46,7 +48,7 @@ $('.select_files.upload').on('click', function(evt) {
 var parentElement = document.getElementById('messages');
 var socket = io();
 socket.on('message',function(msg){
-    for (var i in msg) {
+     for (var i in msg) {
        //alert( msg[i])
         var theFirstChild = parentElement.firstChild;
         var newElement = document.createElement("div");
@@ -55,7 +57,3 @@ socket.on('message',function(msg){
         document.getElementById('myFile').value ="";
     }
 });
-
-
-
-

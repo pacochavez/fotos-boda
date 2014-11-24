@@ -78,6 +78,7 @@
    
    function sesion (response){
     console.log(response.id)
+    id_usuario = response.name;
     var formData = new FormData();
 
     formData.append('userName',response.id);
@@ -97,7 +98,9 @@
     };
 
     xhr.onload = function() {
-      $(".login").html("Hola "+response.name );
+      $(".user").html("Hola "+response.name );
+      $(".select_files").addClass("active");
+      $(".login").removeClass("active");
     };
     
     xhr.send(formData);
