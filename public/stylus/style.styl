@@ -1,4 +1,5 @@
 @import('normalize.styl')
+@import('nib')
 body 
 	background #dbdaca url("style/bg-sand.png")
 	font-family "arial"
@@ -47,18 +48,20 @@ body
 							&.progress
 								width 200px
 								.bar
-									height: 20px;
-									background-color: #6188f5;
-									border-radius: 20px;
-									background-repeat: repeat-x;
-									background-position: 0 0;
-									background-size: 40px 22px;
-									background-image: -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image: -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image: -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image: linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									-webkit-animation: play 0.8s linear 0 infinite;
-									&.stop{animation: stop 0.8s linear 0 none;}
+									height 20px
+									background-color #6188f5
+									border-radius 20px
+									background-repeat repeat-x
+									background-position 0 0
+									background-size 40px 22px;
+									background-image -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-image linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									animation play 0.8s linear 0 infinite
+									
+									&.stop
+										animation stop 0.8s linear 0 none
 							&.upload
 								background #00a203
 							&.login
@@ -106,6 +109,14 @@ body
 @keyframes play {
 	from {
 		background-position 150px
+	}
+	to {
+		background-position -100px
+	}
+}
+@keyframes stop {
+	from {
+		background-position -100px
 	}
 	to {
 		background-position -100px
