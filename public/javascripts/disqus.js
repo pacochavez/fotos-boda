@@ -1,6 +1,6 @@
 
       var disqus_shortname = 'jammyvegapacochavez'; // required: replace example with your forum shortname
-      var disqus_identifier = '{{post.id}}'; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
+      //var disqus_identifier = '{{post.id}}'; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
 
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {

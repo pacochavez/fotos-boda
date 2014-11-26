@@ -8,8 +8,14 @@ block content
         img(src='/img/boda-jammy-paco.png', alt='la boda de Jammy y Paco')
         h1 Jammy & Paco
       nav
-        form(method='post', action='/',id='myForm')
           include menu.jade
+      if  usuario
+        div.user
+          img(src="#{avatar}")
+          span.name #{usuario}
+      else
+        div.user.active  
+          .fb-login-button(data-max-rows='1', data-size='large', data-show-faces='false',data-auto-logout-link='flase', onlogin='checkLoginState();')
   section.fotos
       #messages
         include galeria.jade

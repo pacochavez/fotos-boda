@@ -37,31 +37,69 @@ app.get('/', function(req, res){
 if (req.session.user_Id) {
     var id_usuario = req.session.user_Id;
     var username = req.session.user_Name;
+    var avatar = req.session.avatar;
   }
   var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos order by id desc";
+  
+
   db.serialize(function() {
     db.all(consulta, function(err, row) {
-            res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario});
+            res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'avatar':avatar});
     });
+   });
+});
+
+app.get('/:id', function(req, res){
+  console.log(req.params.id)
+if (req.session.user_Id) {
+    var id_usuario = req.session.user_Id;
+    var username = req.session.user_Name;
+    var avatar = req.session.avatar;
+  }
+  
+  if (req.params.id > 0){
+    var id_foto=" where id ='"+req.params.id+"'";
+    console.log(id_foto)
+  }else{
+    var id_foto="where imagen ='"+req.params.id+"'";
+  }
+  var consulta ="SELECT rowid AS id,* FROM fotos "+id_foto;
+  db.serialize(function() {
+    db.all(consulta, function(err, row) {
+      var next ="SELECT rowid AS id FROM fotos  where id >"+row[0]['id']+" ORDER BY id LIMIT 1";
+      db.all(next, function(err, row_next) {
+        var prev ="SELECT rowid AS id FROM fotos  where id <"+row[0]['id']+" ORDER BY id desc LIMIT 1 ";
+         db.all(prev, function(err, row_prev) {
+          console.log(row+":"+row_next+":"+row_prev)
+          res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'avatar':avatar,'next':row_prev,'prev':row_next});
+        });
+      });
+     
+    });
+    
+  
    });
 });
 
 
 
+
+
 app.post('/', function(req, res) {
-
-
+  console.log(req.body.userName);
   if(req.body.userName){
     var user ={
        _Id : req.body.userName[0]
       ,_Name : req.body.userName[1]
       ,_LastName : req.body.userName[2]
       ,_FirstName : req.body.userName[3]      
+      ,_Avatar : req.body.userName[4]      
     }
     
     console.log(Users)
     req.session.user_Id =user._Id;
     req.session.user_Name =user._Name;
+    req.session.avatar =user._Avatar;
     var consulta ="SELECT id_usuario,name FROM users where id_usuario='"+user._Id+"'";
     db.serialize(function() {
       db.all(consulta, function(err, row) {
@@ -77,7 +115,6 @@ app.post('/', function(req, res) {
       var stmt = db.prepare("INSERT INTO fotos VALUES (?,?,?)");
            Users[req.session.user_Name] ={};
            Users[req.session.user_Name]['fotos']={};
-          
       if(req.files.myFile.path!=null){
           var elpath = req.files.myFile.path,
               upFoto = elpath.split("/");
@@ -87,20 +124,6 @@ app.post('/', function(req, res) {
               stmt.run(req.session.user_Id,upFoto,type);
               Users[req.session.user_Name]['fotos'][0] = upFoto;
               console.log(upFoto+" unafoto");
-      }else{
-             var ft=req.files.myFile.length
-             var i=0;
-        while ( i < ft) {
-          var elpath = req.files.myFile[i].path,
-              upFoto = elpath.split("/");
-              upFoto = upFoto[upFoto.length-1];
-          var type = upFoto.split(".");
-              type = type[type.length-1];
-              stmt.run(req.session.user_Id,upFoto,type);
-              Users[req.session.user_Name]['fotos'][i] = upFoto;
-              console.log(upFoto+" muchas");
-              i++;
-        } 
       }
       stmt.finalize();
     });

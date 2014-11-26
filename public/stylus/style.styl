@@ -6,7 +6,7 @@ body
 	header
 		background #0467a0
 		border-bottom #fff 5px solid
-		height: 96px
+		overflow hidden
 		.wrapper
 			figure
 				width 230px
@@ -23,28 +23,67 @@ body
 					color #fff
 					font-family 'Alex Brush', cursive
 					margin-left 5px
+			.user
+				background #fff
+				border-radius 0px 0px 10px 10px
+				padding 5px
+				position absolute
+				top 0px
+				right 10px
+				img
+					display inline-block
+					width 34px
+					vertical-align middle
+					margin 3px
+					border-radius 20px
+					border solid 1px #CEC6E0
+				span
+					color #2A52A9
+					font-weight bold
+					margin-left 5px
+					&.name
+						display none
+				&.active	
+					&::before
+						content ''
+						background url("style/icons.png") no-repeat
+						height 20px
+						width 37px
+						display inline-block
+						background-position 6px 0px
+						vertical-align middle
 			nav
 				vertical-align middle
-				display inline-block
-				float right
+				display block
+				text-align center
 				ul
-					margin 0px;
+					display inline-block
+					margin 0px
+					padding 0px
 					text-align center
 					li 
 						display none
 						margin 5px
 						&.btn-pic
 							background #0878ac
-							border-radius: 15px
+							border-radius 15px
 							color #fff
 							cursor pointer
 							font-size 18px
 							padding 9px 5px 
 							text-decoration none
+							&::before
+								content ''
+								background url("style/icons.png") no-repeat
+								height 20px
+								width 37px
+								display inline-block
+								background-position 3px -60px
+								vertical-align middle
 							&.active
 								display inline-block
 							&:hover
-								background #0878ac
+								background #2288B7
 							&.progress
 								width 200px
 								.bar
@@ -53,24 +92,26 @@ body
 									border-radius 20px
 									background-repeat repeat-x
 									background-position 0 0
-									background-size 40px 22px;
-									background-image -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
-									background-image linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent);
+									background-size 40px 22px
+									background-image -webkit-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent)
+									background-image -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent)
+									background-image -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent)
+									background-image linear-gradient(315deg,transparent,transparent 33%,rgba(0,0,0,0.12) 33%,rgba(0,0,0,0.12) 66%,transparent 66%,transparent)
 									animation play 0.8s linear 0 infinite
 									
 									&.stop
 										animation stop 0.8s linear 0 none
 							&.upload
 								background #00a203
+								&::before
+									background-position 3px -31px
 							&.login
 								background #4c69ba
 								background -webkit-gradient(linear, center top, center bottom, from(#4c69ba), to(#3b55a0))
 								background -webkit-linear-gradient(#4c69ba, #3b55a0)
 								border-color #4c69ba
 								cur						
-								&:hover
+								&hover
 									background -webkit-gradient(linear, center top, center bottom, from(#5b7bd5), to(#4864b1))
 									background -webkit-linear-gradient(#5b7bd5, #4864b1)
 									border-bottom-color #41599f
@@ -104,7 +145,7 @@ body
 					border-radius 20px
 					border 5px solid #fff
 					overflow hidden
-					&:hover
+					&hover
 						border 5px solid #0878ac
 					img
 						width 240px
@@ -125,4 +166,21 @@ body
 	to {
 		background-position -100px
 	}
+
 }
+
+@media screen and (min-width: 680px)
+	body 
+		header
+			.wrapper
+				.user
+					span
+						&.name
+							display inline-block
+@media screen and (min-width: 725px)
+	body 
+		header
+			.wrapper
+				nav
+					display inline-block
+						

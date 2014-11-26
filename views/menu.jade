@@ -1,15 +1,22 @@
-div.user #{usuario}
 ul
+	if prev && next
+		if prev	!= ""
+			each value in prev
+				each num_p in value
+					li.btn-pic.active 
+						a(href="/#{num_p}") anterior
+		if next != ""
+			each value in next
+				each num_n in value
+					li.btn-pic.active 
+						a(href="/#{num_n}") siguiente
+	li.alert.btn-pic mensaje
 	li.progress.btn-pic
 		div.bar(style='width: 0%')
-	li.alert.btn-pic mensaje
-	if  usuario
-		li.select_files.btn-pic.active
-			input(type='file', name='myFile', id='myFile',multiple)
-		li.select_files.upload.btn-pic.active subir fotos		
+	if usuario
+		li.add.btn-pic.active(onclicK ="doClick()") Agregar fotos
 	else
-		li.select_files.btn-pic
-			input(type='file', name='myFile', id='myFile',multiple)
-		li.select_files.upload.btn-pic subir fotos
-		li.menu.btn-pic.login.upload.active
-			.fb-login-button(data-max-rows='1', data-size='large', data-show-faces='false',data-auto-logout-link='flase', onlogin='checkLoginState();')
+		li.add.btn-pic(onclicK ="doClick()") Agregar fotos
+	li.upload.btn-pic subir fotos		
+	li.select_files.btn-pic 		
+		input(type='file', name='myFile', id='myFile',multiple, onchange ="change()")
