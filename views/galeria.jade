@@ -19,4 +19,4 @@ each value, i in name
 		if (nombre)
 			h2 #{nombre}
 		a(href='/#{id}')
-			img(src='/thumbnail/#{imagen}')
+			img(src='/thumbnail/#{imagen}',onload=('imagen_load()'))

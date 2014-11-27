@@ -78,3 +78,6 @@ function doClick() {
         el.click();
       }
     }
+function imagen_load(){
+    
+}
