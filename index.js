@@ -49,7 +49,7 @@ if (req.session.user_Id) {
    });
 });
 
-app.get('/fotos/:id', function(req, res){
+app.get('/:id', function(req, res){
   console.log(req.params.id)
 if (req.session.user_Id) {
     var id_usuario = req.session.user_Id;
