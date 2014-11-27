@@ -132,11 +132,16 @@ body
 			div
 				display inline-block
 				margin 10px
-				width 250px
-				height 250px
+				width 10px
+				height 10px
 				margin 10px
 				position relative
 				overflow hidden
+				-webkit-transition width 2s, height 2s
+				vertical-align middle
+				&.active
+					width 250px
+					height 250px
 				a
 					background #fff
 					width 240px

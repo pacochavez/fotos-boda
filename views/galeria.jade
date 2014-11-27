@@ -4,19 +4,17 @@
 -var type
 -var nombre
 each value, i in name
-	div 
-		each num,e in value
-			if (e == 'id')
-				-id = num
-			if (e == 'id_usuario')
-				-id_usuario = num
-			if (e == 'imagen')
-				-imagen = num
-			if (e == 'type')
-				-type = num
-			if (e == 'name')
-				-nombre = "fotos de "+num
-		if (nombre)
-			h2 #{nombre}
-		a(href='/#{id}')
-			img(src='/thumbnail/#{imagen}',onload=('imagen_load()'))
+	each num,e in value
+		if (e == 'id')
+			-id = num
+		if (e == 'id_usuario')
+			-id_usuario = num
+		if (e == 'imagen')
+			-imagen = num
+		if (e == 'type')
+			-type = num
+		if (e == 'name')
+			-nombre = "fotos de "+num
+	div(id="imagen_#{id}")
+		a(href='/fotos/#{id}')
+			img(src='/thumbnail/#{imagen}',onload='imagen_load("imagen_#{id}")')

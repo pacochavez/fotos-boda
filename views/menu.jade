@@ -4,12 +4,12 @@ ul
 			each value in prev
 				each num_p in value
 					li.btn-pic.active 
-						a(href="/#{num_p}") anterior
+						a(href="/fotos/#{num_p}") anterior
 		if next != ""
 			each value in next
 				each num_n in value
 					li.btn-pic.active 
-						a(href="/#{num_n}") siguiente
+						a(href="/fotos/#{num_n}") siguiente
 	li.alert.btn-pic mensaje
 	li.progress.btn-pic
 		div.bar(style='width: 0%')

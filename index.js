@@ -48,7 +48,7 @@ if (req.session.user_Id) {
     });
    });
 });
-
+  
 app.get('/fotos/:id', function(req, res){
   console.log(req.params.id)
 if (req.session.user_Id) {
@@ -80,11 +80,6 @@ if (req.session.user_Id) {
   
    });
 });
-
-
-
-
-
 app.post('/', function(req, res) {
   console.log(req.body.userName);
   if(req.body.userName){
@@ -95,7 +90,6 @@ app.post('/', function(req, res) {
       ,_FirstName : req.body.userName[3]      
       ,_Avatar : req.body.userName[4]      
     }
-    
     console.log(Users)
     req.session.user_Id =user._Id;
     req.session.user_Name =user._Name;

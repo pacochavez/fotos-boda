@@ -13,6 +13,10 @@ html(lang='es', xmlns:fb='http://ogp.me/ns/fb#')
     link(rel='apple-touch-icon', sizes='72x72', href='/ios/icon-72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='/ios/icon@2x.png')
     link(rel='apple-touch-icon', sizes='144x144', href='/ios/icon-72@2x.png')
+    script
+        |function imagen_load(imagen){
+        |   document.getElementById(imagen).setAttribute("class", "active");
+        |}
    //- script( src="/javascripts/analytics.js")
 
   body 

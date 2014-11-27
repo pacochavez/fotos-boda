@@ -30,7 +30,7 @@ socket.on('message',function(msg){
        //alert( msg[i])
         var theFirstChild = parentElement.firstChild;
         var newElement = document.createElement("div");
-            newElement.innerHTML ='<a href="/'+msg+'"><img src="/thumbnail/'+msg+'"></a>';
+            newElement.innerHTML ='<a href="/fotos/'+msg+'"><img src="/thumbnail/'+msg+'"></a>';
         parentElement.insertBefore(newElement, theFirstChild);
 });
 
@@ -78,6 +78,4 @@ function doClick() {
         el.click();
       }
     }
-function imagen_load(){
-    
-}
+
