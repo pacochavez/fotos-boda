@@ -1,22 +1,12 @@
-ul
-	if prev && next
-		if prev	!= ""
-			each value in prev
-				each num_p in value
-					li.btn-pic.active 
-						a(href="/fotos/#{num_p}") anterior
-		if next != ""
-			each value in next
-				each num_n in value
-					li.btn-pic.active 
-						a(href="/fotos/#{num_n}") siguiente
-	li.alert.btn-pic mensaje
-	li.progress.btn-pic
-		div.bar(style='width: 0%')
-	if usuario
-		li.add.btn-pic.active(onclicK ="doClick()") Agregar fotos
-	else
-		li.add.btn-pic(onclicK ="doClick()") Agregar fotos
-	li.upload.btn-pic subir fotos		
-	li.select_files.btn-pic 		
-		input(type='file', name='myFile', id='myFile',multiple, onchange ="change()")
+if !next
+	ul
+		li.alert.btn-pic mensaje
+		li.progress.btn-pic
+			div.bar(style='width: 0%')
+		if usuario
+			li.add.btn-pic.active(onclicK ="doClick()") Agregar fotos
+		else
+			li.add.btn-pic(onclicK ="doClick()") Agregar fotos
+		li.upload.btn-pic subir fotos		
+		li.select_files.btn-pic 		
+			input(type='file', name='myFile', id='myFile',multiple, onchange ="change()")

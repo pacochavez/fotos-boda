@@ -15,6 +15,16 @@ each value, i in name
 			-type = num
 		if (e == 'name')
 			-nombre = "fotos de "+num
-	div(id="imagen_#{id}")
-		a(href='/fotos/#{id}')
-			img(src='/thumbnail/#{imagen}',onload='imagen_load("imagen_#{id}")')
+	if next	
+		#fondo.fondo(onclick="cerrarFondo()")
+			div.par.align
+			#contenedor.par
+		div.fotos_boda(id="imagen_#{id}")
+			div
+				include next.jade
+				a.full_image(onclick='fullsize("imagen_#{id}")')
+				img(id="_imagen_#{id}", src='/fotos-boda/#{imagen}',onload='imgresize("imagen_#{id}")',onclick='fullsize("imagen_#{id}")')
+	else
+		div.galeria(id="imagen_#{id}")
+			a(href='/fotos/#{id}')
+				img(src='/thumbnail/#{imagen}',onload='imagen_load("imagen_#{id}")')
