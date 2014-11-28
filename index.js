@@ -140,7 +140,7 @@ var crop = function(upFoto){
   easyimg.rescrop({
     src:__dirname + '/public/fotos-boda/'+upFoto, dst:__dirname + '/public/thumbnail/'+upFoto,
     width:500, height:500,
-    cropwidth:250, cropheight:250,
+    cropwidth:100, cropheight:100,
     x:0, y:0
   }).then(function(image) {
     console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
