@@ -1,0 +1,66 @@
+.aviso_privacidad
+{
+	text-align: center;
+	font-size: 11px;
+	padding: 7px;
+	background: #0468a0;
+	color: #fff;
+}
+.aviso_privacidad p span
+{
+	font-weight: bold;
+	color: #fff;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.aviso_privacidad p span:hover{
+color:#fff;
+}
+
+#fondo_negro{
+	position: fixed;
+	background: rgba(0, 0, 0, 0.85);
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	display: none;
+	z-index: 9999999
+}
+#fondo_negro.mostrar{
+	display: block;
+}
+#fondo_negro > div {
+	display: inline-block;
+width: 748px;
+text-align: center;
+position: relative;
+background: #fff;
+margin-top: 50px;
+}
+#fondo_negro > div > div{
+display: inline-block;
+width: 716px;
+text-align: left;
+height: 366px;
+margin: 10px;
+overflow: auto;
+color: #838383;
+}
+#fondo_negro > div > span{
+	position: absolute;
+	top: -20px;
+	right: 0px;
+	color: #A6A2A2;
+	background: #666;
+	width: 20px;
+	height: 20px;
+	font-size: 11px;
+	line-height: 19px;
+	cursor: pointer;
+}
+
+#fondo_negro div > div h5{
+ font-size: 3em;
+}
