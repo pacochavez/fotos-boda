@@ -1,0 +1,96 @@
+body
+	section.fotos
+		div#messages
+			text-align center
+			&::before
+				content: "";
+				width: 140px;
+				height: 59px;
+				margin: auto;
+				display: block;
+				background-image: url("style/bg-boda.png");
+				-webkit-background-size: auto 263%;
+				-moz-background-size: auto 263%;
+				background-size: auto 263%;
+				background-position: -611px -42px;
+				text-align center
+			div.galeria
+				display inline-block
+				width 10px
+				height 10px
+				margin 10px
+				position relative
+				overflow hidden
+				-webkit-transition width .5s, height .5s
+				vertical-align middle
+				padding 5px
+				border-radius 20px
+				background #fff
+				&:hover
+					background #0878ac
+				&.active
+					width 100px
+					height 100px
+				img
+					width 100%
+					border-radius 18px
+			div.fotos_boda
+				div
+					position relative
+					display inline-block
+					&:hover
+						a
+							display block
+							cursor pointer
+					a
+						display none
+						position: absolute;
+						height: 30px;
+						top: 50%;
+						text-align: center;
+						&::before
+							content ''
+							display: inline-block;
+							border 15px solid transparent
+						&.next
+							left -5px
+							&::before
+								border-right 15px solid rgba(255, 255, 255, 0.7)
+						&.prev
+							right -5px
+							&::before
+								border-left 15px solid rgba(255, 255, 255, 0.7)
+						&.full_image
+							top 5px
+							right 5px
+							border 1px solid rgba(255, 255, 255, 0.8)
+							background rgba(0, 0, 0, 0.8)
+							padding 2px
+							height auto
+							&::before
+								border 0px
+								background rgba(255, 255, 255, 0.67)
+								display block
+								width 13px
+								height 7px
+					img
+						display: inline-block;
+						width 10px
+						
+.fondo
+	display none
+	position fixed
+	height 100%
+	width 100%
+	background rgba(0,0,0,0.8)
+	top  0px
+	left 0px
+	z-index 99999
+	text-align center
+	&.full
+		display block
+	.par
+		display inline-block
+		vertical-align middle
+		&.align
+			height 100%

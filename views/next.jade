@@ -1,0 +1,9 @@
+if prev && next
+		if prev	!= ""
+			each value in prev
+				each num_p in value
+					a.next(href="/fotos/#{num_p}")
+		if next != ""
+			each value in next
+				each num_n in value
+					a.prev(href="/fotos/#{num_n}")
