@@ -30,6 +30,7 @@ socket.on('message',function(msg){
        //alert( msg[i])
         var theFirstChild = parentElement.firstChild;
         var newElement = document.createElement("div");
+        newElement.className = "galeria active";
             newElement.innerHTML ='<a href="/fotos/'+msg+'"><img src="/thumbnail/'+msg+'"></a>';
         parentElement.insertBefore(newElement, theFirstChild);
 });
