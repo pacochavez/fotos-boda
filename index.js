@@ -6,7 +6,7 @@ var app = require('express')()
   , easyimg = require('easyimage')
   , sqlite3 = require('sqlite3').verbose()
   , db = new sqlite3.Database('./database/database.db')
-  ,bodyParser = require('body-parser') // for reading POSTed form data into `req.body`
+  ,bodyParser = require('body-parser') // for reading postTed form data into `req.body`
   ,expressSession = require('express-session')
   ,cookieParser = require('cookie-parser')
   ,Users = {};
@@ -40,8 +40,6 @@ if (req.session.user_Id) {
     var avatar = req.session.avatar;
   }
   var consulta ="SELECT rowid AS id,id_usuario,imagen,type FROM fotos order by id desc";
-  
-
   db.serialize(function() {
     db.all(consulta, function(err, row) {
             res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'avatar':avatar});
@@ -66,18 +64,20 @@ if (req.session.user_Id) {
   var consulta ="SELECT rowid AS id,* FROM fotos "+id_foto;
   db.serialize(function() {
     db.all(consulta, function(err, row) {
-      var next ="SELECT rowid AS id FROM fotos  where id >"+row[0]['id']+" ORDER BY id LIMIT 1";
-      db.all(next, function(err, row_next) {
-        var prev ="SELECT rowid AS id FROM fotos  where id <"+row[0]['id']+" ORDER BY id desc LIMIT 1 ";
-         db.all(prev, function(err, row_prev) {
-          console.log(row+":"+row_next+":"+row_prev)
-          res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'avatar':avatar,'next':row_prev,'prev':row_next});
+      if(row.length > 0){
+        var next ="SELECT rowid AS id FROM fotos  where id >"+row[0]['id']+" ORDER BY id LIMIT 1";
+        db.all(next, function(err, row_next) {
+          var prev ="SELECT rowid AS id FROM fotos  where id <"+row[0]['id']+" ORDER BY id desc LIMIT 1 ";
+           db.all(prev, function(err, row_prev) {
+            console.log(row+":"+row_next+":"+row_prev)
+            res.render('home2', {'name': row,'usuario':username,'id_usuario':id_usuario,'avatar':avatar,'next':row_prev,'prev':row_next});
+          });
         });
-      });
-     
+      }else{
+        res.render('home2');
+        
+      }
     });
-    
-  
    });
 });
 app.post('/', function(req, res) {
@@ -97,7 +97,6 @@ app.post('/', function(req, res) {
     var consulta ="SELECT id_usuario,name FROM users where id_usuario='"+user._Id+"'";
     db.serialize(function() {
       db.all(consulta, function(err, row) {
-        //console.log(row.length)
         var stmt = db.prepare("INSERT INTO users VALUES (?,?,?,?)");
           if(row.length==0){
         stmt.run(user._Id,user._Name,user._LastName,user._FirstName);
