@@ -1,0 +1,315 @@
+@import "nib"
+@import "normalize.styl"
+@font-face
+    font-family 'alex_brushregular'
+    src url('font/alexbrush-regular-webfont.eot')
+    src url('font/alexbrush-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/alexbrush-regular-webfont.woff') format('woff'),
+        url('font/alexbrush-regular-webfont.ttf') format('truetype'),
+        url('font/alexbrush-regular-webfont.svg#alex_brushregular') format('svg')
+    font-weight normal
+    font-style normal
+
+@font-face 
+  font-family "icon"
+  src url("font/icon.eot")
+  src url("font/icon.eot?#iefix") format("embedded-opentype"),
+    url("font/icon.woff") format("woff"),
+    url("font/icon.ttf") format("truetype"),
+    url("font/icon.svg#icon") format("svg")
+  font-weight normal
+  font-style normal
+
+[class^="icon-"]::before,
+[class^="icon-"]::after,
+[class*=" icon-"]::before, 
+[class*=" icon-"]::after 
+  font-family "icon" !important
+  font-style normal !important
+  font-weight normal !important
+  font-variant normal !important
+  text-transform none !important
+  speak none
+  line-height 1
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+
+.icon-facebook::before 
+  content "a"
+
+.icon-google::before 
+  content "b"
+
+.icon-pastel::before 
+  content "c"
+
+.icon-iglesia::before 
+  content "d"
+
+.icon-triangulo::after 
+  content "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  position relative
+  top 9px
+  font-size 21px
+  color #fff
+
+.icon-twitter::before
+  content "f"
+
+.icon-whatsapp::before
+  content "g"
+
+
+.boton
+  border-radius 8px
+  padding 7px
+  background #DF4186
+  margin 4px 7% 15px
+  display block
+  text-decoration none
+  color #fff
+  font-weight bold
+
+.date
+  background #0468A0
+  h2
+    color #E3C293
+  article
+    i 
+      color #fff
+      font-size 9em
+    h2
+      color #fff
+    p
+      color #43D9E8
+      &.time
+        color #fff
+    .map
+      display inline-block
+      border-radius 10px
+      overflow hidden
+      position relative
+      width 239px
+      height 240px
+
+.vestimenta
+  background #DBDACA url(style/sand.png)
+  h2
+    color #808080
+    margin-bottom 0px
+  p
+    margin 0px
+  article
+    div
+      display inline-block
+      overflow hidden
+      width 73px
+      img
+        height 120px
+    h3
+      color #69ABBB
+    p
+      color #7A7A7A
+    &.damas
+      h3
+        color #E27BBD
+      div img
+        position relative
+        right 79px
+.mesa_de_regalos 
+  background #fff
+  h2
+    color #c1337a
+  article
+    display inline-block
+    h3
+      color #af8945
+    p
+      color #7a7a7a
+    i
+      width 177px
+      height 152px
+      margin auto
+      display block
+      background url("style/bg-boda.png") no-repeat
+      background-size auto 103%
+      background-position -214px -6px
+  &::after
+    content ""
+    width 140px
+    height 59px
+    margin auto
+    display block
+    background-image url("style/bg-boda.png")
+    background-size auto 263%
+    background-position -611px -42px
+.contacto
+  background #ddd
+  h2
+    color #0468A0
+  article
+    display block
+    a 
+      color #6d6d6d
+      font-size 69px
+      text-decoration none
+      i.icon-twitter:hover
+        color #38a8e0        
+      i.icon-facebook:hover
+        color #37589a
+      i.icon-google:hover
+        color #da4a38
+    h4 
+      color #0468A0
+    p 
+      font-family 'alex_brushregular'
+      color #6d6d6d
+      font-size 1.6em
+    &.icon-whatsapp::before
+      color #6d6d6d
+      font-size 59px
+      display inline-block
+  &::before
+    font-family "icon"
+    content "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    top -1px
+    font-size 21px
+    background #fff
+    color #ddd
+    height 15px
+    display block
+
+body
+  font-family "arial"
+  background #DBDACA url(style/bg-sand.png)
+  text-align center
+
+h1,h2,h3,h4,h5,h6
+  font-family "alex_brushregular"
+  font-size 2em
+  margin 4px 0px
+
+header,section
+  overflow hidden
+
+section
+  article
+    margin-bottom 10px
+
+header
+  background url(style/bg-header.png) repeat-x bottom
+  padding-bottom 40px
+  h1
+    font-size 1.8em
+    color #514C37
+    margin 0px
+    &::after
+      background-position -67px 0 !important
+  h4
+    color #927B5A
+  figure
+    margin 2px 40px
+  p
+    font-size 1em
+    color #927B5A
+    margin 0 0 4px 0
+    font-family arial
+  img
+    width 200px
+
+header h1::before,header h1::after
+  content ""
+  background url(style/bg-boda.png)no-repeat center
+  width 52px
+  height 63px
+  position relative
+  display inline-block
+  vertical-align middle
+  background-size auto 150% !important
+  background-position 1px 0px
+
+iframe
+  width 240px
+  height 240px
+@media(min-width:468px)
+  .date
+    article
+      i,div
+        display inline-block
+        vertical-align top
+        text-align left
+        width 150px
+        
+  .vestimenta
+    article
+      display inline-block
+      width 48%
+      div
+        display inline-block
+      p
+        display inline-block
+        width 50%
+        text-align left
+        vertical-align top
+  .mesa_de_regalos 
+    article
+      display inline-block
+      width 48% 
+      vertical-align bottom
+      p
+        text-align left
+  .boton
+      width 250px
+      display inline-block
+@media(min-width:900px)   
+  .date
+    article
+      width 400px
+      margin 1%
+      display inline-block
+  .vestimenta
+    article
+      width 400px
+      margin 1%
+  .mesa_de_regalos 
+    article
+      width 400px
+      margin 1%
+  .contacto 
+    article
+      width 400px
+      margin 1%
+      display inline-block
+    div
+      width 41%
+      display inline-block
+
+
+@media(min-width:1024px)
+
+  header
+    h1
+      font-size 5em
+    img
+      width 340px;   
+  section
+    h2
+      margin-top 14px
+      font-size 3em
+    article
+      padding-bottom 20px
+  .date
+    article
+      width 600px
+      margin 1%
+      display inline-block
+  .vestimenta
+    article
+      width 600px
+      margin 1%
+  .mesa_de_regalos 
+    article
+      width 600px
+      margin 1%
+

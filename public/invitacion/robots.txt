@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /css/
+Disallow: /upload/
+Disallow: /ios/
+Disallow: /stylus/
